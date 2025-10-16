@@ -31,8 +31,13 @@ public class LevelSelection extends JPanel implements ActionListener{
         topPanel.setLayout(new BorderLayout());
 
 
+        // Make the button
+        buttonSize = new Dimension(200, 100);
+
         backButton = new JButton("Back");
         backButton.addActionListener(this);
+        backButton.setPreferredSize(buttonSize);
+        backButton.setFont(new Font("Arial", Font.BOLD, 24));
 
         topPanel.add(backButton, BorderLayout.WEST);
 

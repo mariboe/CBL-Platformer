@@ -38,7 +38,7 @@ public class MainFrame extends JFrame {
         // add the mainPanel to the frame
         this.add(mainPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setSize(1200, 800);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

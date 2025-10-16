@@ -12,18 +12,27 @@ public class Settings extends JPanel implements ActionListener{
     private JPanel centerPanel;
     private JButton backButton;
 
-    private JLabel settingsLabel;
+    private JLabel imageLabel;
+
+    private Dimension buttonSize;
+
+    private ImageIcon settingsImage;
 
     public Settings(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.setLayout(new BorderLayout());
         
-        // Back button
+        // Make the top panel
         topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+        // Make the back button
+        buttonSize = new Dimension(200, 100);
+
         backButton = new JButton("Back");
         backButton.addActionListener(this);
+        backButton.setPreferredSize(buttonSize);
+        backButton.setFont(new Font("Arial", Font.BOLD, 24));
 
         topPanel.add(backButton);
 
@@ -33,9 +42,11 @@ public class Settings extends JPanel implements ActionListener{
         centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        settingsLabel = new JLabel("Settings");
+        settingsImage = new ImageIcon("Under-Construction-Sign.png");
+        imageLabel = new JLabel(settingsImage);     
 
-        centerPanel.add(settingsLabel);
+        centerPanel.add(imageLabel);
+        
 
         this.add(centerPanel);
 

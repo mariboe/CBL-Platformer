@@ -30,10 +30,10 @@ public class MainMenu extends JPanel implements ActionListener {
 
         this.add(Box.createVerticalStrut(40));
         this.add(titleLabel);
-        this.add(Box.createVerticalStrut(30));
+        this.add(Box.createVerticalStrut(100));
 
         // Make the buttons and set Max size for buttons
-        buttonSize = new Dimension(200, 50);
+        buttonSize = new Dimension(300, 100);
         playButton = new JButton("Play");
         settingsButton = new JButton("Settings");
         helpButton = new JButton("Help");
@@ -48,6 +48,7 @@ public class MainMenu extends JPanel implements ActionListener {
             b.setMinimumSize(buttonSize);
             b.setMaximumSize(buttonSize); // fix width, prevent stretching
             b.addActionListener(this);
+            b.setFont(new Font("Arial", Font.BOLD, 16));
             this.add(b);
             this.add(Box.createVerticalStrut(20));
         }
