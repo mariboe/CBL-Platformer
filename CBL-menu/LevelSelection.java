@@ -22,12 +22,19 @@ public class LevelSelection extends JPanel implements ActionListener{
 
     private JLabel instruction;
 
+    private Image backgroundImage;
+
     public LevelSelection(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.setLayout(new BorderLayout());
+
+        // Load background image
+        backgroundImage = new ImageIcon("Clouds.jpg").getImage();
+
         
-        // Back button
+        // Make the top panel
         topPanel = new JPanel();
+        topPanel.setOpaque(false);
         topPanel.setLayout(new BorderLayout());
 
 
@@ -48,19 +55,14 @@ public class LevelSelection extends JPanel implements ActionListener{
 
 
         this.add(topPanel, BorderLayout.NORTH);
+        
 
-        // Center Panel
+        // Make the center panel
         centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
+        centerPanel.setOpaque(false);
+        centerPanel.setLayout(new GridLayout(2, 2, 40, 40)); 
 
-    
-        centerPanel.add(Box.createVerticalStrut(30));
-
-        // Make the buttons and set Max size for buttons
-        centerPanel = new JPanel();
-        centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 100));
-
-        buttonSize = new Dimension(90, 90);
+        buttonSize = new Dimension(150, 100); // rectangular shape
         level1 = new JButton("Level 1");
         level2 = new JButton("Level 2");
         level3 = new JButton("Level 3");
@@ -69,14 +71,21 @@ public class LevelSelection extends JPanel implements ActionListener{
         JButton[] buttons = {level1, level2, level3, level4};
         for (JButton b : buttons) {
             b.setPreferredSize(buttonSize);
+            b.setFont(new Font("Arial", Font.BOLD, 20));
             b.addActionListener(this);
             centerPanel.add(b);
-        }   
+        }
 
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 50, 100)); 
         this.add(centerPanel, BorderLayout.CENTER);
     }
 
-    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw image scaled to fit the panel
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

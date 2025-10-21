@@ -40,7 +40,7 @@ public class Help extends JPanel implements ActionListener{
         centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        helpLabel = new JLabel("FIGURE IT OUT YOURSELF");
+        helpLabel = new JLabel("FIGURE IT OUT YOURSELF(for double jump:)");
 
         centerPanel.add(helpLabel);
 

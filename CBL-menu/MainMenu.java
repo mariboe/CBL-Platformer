@@ -17,11 +17,17 @@ public class MainMenu extends JPanel implements ActionListener {
 
     private MainFrame mainFrame;
 
+    private Image backgroundImage;
+
     public MainMenu(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         
         // Set the layout for this panel
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        // Load background image
+        backgroundImage = new ImageIcon("Landscape.jpg").getImage();
+
 
         // Make the title
         titleLabel = new JLabel("PLATFORMER GAME");
@@ -52,6 +58,13 @@ public class MainMenu extends JPanel implements ActionListener {
             this.add(b);
             this.add(Box.createVerticalStrut(20));
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw image scaled to fit the panel
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
     }
 
     @Override
