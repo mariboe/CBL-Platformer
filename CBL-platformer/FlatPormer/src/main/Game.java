@@ -1,17 +1,42 @@
 package main;
 
+import java.awt.Graphics;
+import levels.LevelManager;
+import main.entities.Player;
+
 public class Game implements Runnable {
 	
-	private GameWindow gameWindow;
-	private GamePanel gamePanel;
+	
+	private final GameWindow gameWindow;
+	private final GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS_SET = 120;
+	private final int UPS_SET = 200;
+	private Player player;
+	private LevelManager levelManager;
+
+	public final static int TILES_DEFAULT_SIZE = 32;
+	public final static float SCALE = 1.5f;
+	public final static int TILES_IN_WIDTH = 26;
+	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
 	public Game() {
-		gamePanel = new GamePanel();
+
+		initClasses();
+
+		gamePanel = new GamePanel(this);
 		gameWindow = new GameWindow(gamePanel);
 		gamePanel.requestFocus();
+
 		startGameLoop();
+	}
+
+	private void initClasses() {
+		levelManager = new LevelManager(this);
+		player = new Player(100, 392);
 	}
 
 	private void startGameLoop() {
@@ -19,32 +44,72 @@ public class Game implements Runnable {
 		gameThread.start();
 	}
 
+	public void update() {
+		player.update();
+		levelManager.update();
+	}
+
+	public void render(Graphics g) {
+		levelManager.draw(g);
+		player.render(g);
+	}
+
 	@Override
 	public void run() {
 
 		double timePerFrame = 1000000000.0 / FPS_SET;
-		long lastFrame = System.nanoTime();
+		double timePerUpdate = 1000000000.0 / UPS_SET;
+
+		long previousTime = System.nanoTime();
 
 		int frames = 0;
+		int updates = 0;
 		long lastCheck = System.currentTimeMillis();
 
+		double deltaU = 0;
+		double deltaF = 0;
+
 		while (true) {
+			long currentTime = System.nanoTime();
 
-			long now = System.nanoTime();
-			if (now - lastFrame >= timePerFrame) {
 
-				gamePanel.repaint();
-				lastFrame = now;
-				frames++;
+			deltaU += (currentTime - previousTime) / timePerUpdate;
+			deltaF += (currentTime - previousTime) / timePerFrame;
+			previousTime = currentTime;
+
+			if (deltaU >= 1) {
+				update();
+				updates++;
+				deltaU--;
 			}
+
+			if (deltaF >= 1) {
+				frames++;
+				gamePanel.repaint();
+				deltaF--;
+			}
+
 			
-		if (System.currentTimeMillis() - lastCheck >= 1000) {
-			lastCheck = System.currentTimeMillis();
-			System.out.println("FPS: " + frames);
-			frames = 0;
-		}
+			if (System.currentTimeMillis() - lastCheck >= 1000) {
+				lastCheck = System.currentTimeMillis();
+				System.out.println("FPS: " + frames + " | UPS: " + updates);
+				frames = 0;
+				updates = 0;
+			}
 		}
 
 	}
+
+	public void windowFocusLost() {
+		player.resetDirectionBooleans();
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+    public GameWindow getGameWindow() {
+        return gameWindow;
+    }
 
 }

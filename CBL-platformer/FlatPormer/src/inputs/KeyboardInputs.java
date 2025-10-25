@@ -20,20 +20,21 @@ public class KeyboardInputs implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_W -> gamePanel.getGame().getPlayer().setUp(false);
+			case KeyEvent.VK_A -> gamePanel.getGame().getPlayer().setLeft(false);
+			case KeyEvent.VK_S -> gamePanel.getGame().getPlayer().setDown(false);
+			case KeyEvent.VK_D -> gamePanel.getGame().getPlayer().setRight(false);
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W -> gamePanel.changeYDelta(-5);
-		case KeyEvent.VK_A -> gamePanel.changeXDelta(-5);
-		case KeyEvent.VK_S -> gamePanel.changeYDelta(5);
-		case KeyEvent.VK_D -> gamePanel.changeXDelta(5);
+			case KeyEvent.VK_W -> gamePanel.getGame().getPlayer().setUp(true);
+			case KeyEvent.VK_A -> gamePanel.getGame().getPlayer().setLeft(true);
+			case KeyEvent.VK_S -> gamePanel.getGame().getPlayer().setDown(true);
+			case KeyEvent.VK_D -> gamePanel.getGame().getPlayer().setRight(true);
 		}
-
 	}
-
 }
