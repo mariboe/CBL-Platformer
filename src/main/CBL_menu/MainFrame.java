@@ -1,18 +1,20 @@
+package main.CBL_menu;
+
 import java.awt.*;
 import javax.swing.*;
 
 
 public class MainFrame extends JFrame {
 
-    private CardLayout cardLayout;
+    private final CardLayout cardLayout;
 
-    private JPanel mainPanel;
+    private final JPanel mainPanel;
 
     // all the panels
-    private MainMenu mainMenu;
-    private Help help;
-    private Settings settings;
-    private LevelSelection levelSelection;
+    private final MainMenu mainMenu;
+    private final Help help;
+    private final Settings settings;
+    private final LevelSelection levelSelection;
 
     public MainFrame() {
         // give the frame a name

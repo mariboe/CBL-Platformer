@@ -1,3 +1,5 @@
+package main.CBL_menu;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +29,7 @@ public class MainMenu extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Load background image
-        backgroundImage = new ImageIcon("CBL-menu/res/Landscape.jpg").getImage();
+        backgroundImage = new ImageIcon("src/main/CBL_menu/res/Landscape.jpg").getImage();
 
 
         // Make the title

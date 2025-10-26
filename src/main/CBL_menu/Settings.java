@@ -1,3 +1,5 @@
+package main.CBL_menu;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +43,7 @@ public class Settings extends JPanel implements ActionListener{
         centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        settingsImage = new ImageIcon("CBL-menu/res/Under-Construction-Sign.png");
+        settingsImage = new ImageIcon("src/main/CBL_menu/res/Under-Construction-Sign.png");
         imageLabel = new JLabel(settingsImage);     
 
         centerPanel.add(imageLabel);

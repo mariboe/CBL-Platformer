@@ -9,8 +9,7 @@ public class HelpMethods {
         if (!IsSolid(x, y, levelData))
             if (!IsSolid(x + width, y + height, levelData))
                 if (!IsSolid(x + width, y, levelData))
-                    if (!IsSolid(x, y + height, levelData))
-                        return true;
+                    return !IsSolid(x, y + height, levelData);
         return false;
     }
 
@@ -29,10 +28,7 @@ public class HelpMethods {
 
         int value = levelData[(int) yIndex][(int) xIndex];
 
-        if (value >= 48 || value < 0 || value != 11) // 11 is background
-            return true;
-
-        return false;
+        return value >= 48 || value < 0 || value != 11; // 11 is background
     }
 
     public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed) {

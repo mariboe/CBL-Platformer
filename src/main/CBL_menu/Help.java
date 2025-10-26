@@ -1,20 +1,21 @@
+package main.CBL_menu;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class Help extends JPanel implements ActionListener{
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
-    private JPanel topPanel;
-    private JPanel centerPanel;
-    private JButton backButton;
+    private final JPanel topPanel;
+    private final JPanel centerPanel;
+    private final JButton backButton;
 
-    private JLabel helpLabel;
+    private final JLabel helpLabel;
 
-    private Dimension buttonSize;
+    private final Dimension buttonSize;
 
     public Help(MainFrame mainFrame) {
         this.mainFrame = mainFrame;

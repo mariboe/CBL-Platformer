@@ -7,7 +7,7 @@ import main.utils.LoadSave;
 
 public class LevelManager {
     
-    private Game game;
+    private final Game game;
     private BufferedImage[] levelSprite;
     private final Level levelOne;
     private final Level levelTwo;
@@ -50,5 +50,9 @@ public class LevelManager {
 
     public Level getCurrentLevel(int selectedLevel) {
         return levelsData[selectedLevel];
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

@@ -138,9 +138,6 @@ public class Player extends Entity {
 				updateXPos(xSpeed);
 			} else {
 				hitbox.y = GetEntityHeightIfTouching(hitbox, airSpeed);
-				if (airSpeed < 0) {
-					airSpeed = 0.01f;
-				}
 				resetInAir();
 				updateXPos(xSpeed);
 			}
