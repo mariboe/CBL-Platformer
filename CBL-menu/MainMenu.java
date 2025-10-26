@@ -26,7 +26,7 @@ public class MainMenu extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Load background image
-        backgroundImage = new ImageIcon("Landscape.jpg").getImage();
+        backgroundImage = new ImageIcon("CBL-menu/Landscape.jpg").getImage();
 
 
         // Make the title

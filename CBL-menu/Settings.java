@@ -42,7 +42,7 @@ public class Settings extends JPanel implements ActionListener{
         centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        settingsImage = new ImageIcon("Under-Construction-Sign.png");
+        settingsImage = new ImageIcon("CBL-menu/Under-Construction-Sign.png");
         imageLabel = new JLabel(settingsImage);     
 
         centerPanel.add(imageLabel);

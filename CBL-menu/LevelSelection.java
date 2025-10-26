@@ -30,7 +30,7 @@ public class LevelSelection extends JPanel implements ActionListener{
         this.setLayout(new BorderLayout());
 
         // Load background image
-        backgroundImage = new ImageIcon("Clouds.jpg").getImage();
+        backgroundImage = new ImageIcon("CBL-menu/Clouds.jpg").getImage();
 
         
         // Make the top panel
@@ -85,7 +85,9 @@ public class LevelSelection extends JPanel implements ActionListener{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Draw image scaled to fit the panel
-        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+    
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+
     }
 
     @Override
