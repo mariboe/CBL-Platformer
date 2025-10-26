@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener {
@@ -20,13 +19,15 @@ public class MainMenu extends JPanel implements ActionListener {
     private Image backgroundImage;
 
     public MainMenu(MainFrame mainFrame) {
+        System.out.println("Running Main Menu");
+        
         this.mainFrame = mainFrame;
         
         // Set the layout for this panel
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Load background image
-        backgroundImage = new ImageIcon("CBL-menu/Landscape.jpg").getImage();
+        backgroundImage = new ImageIcon("CBL-menu/res/Landscape.jpg").getImage();
 
 
         // Make the title

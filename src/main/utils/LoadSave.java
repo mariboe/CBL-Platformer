@@ -34,7 +34,7 @@ public class LoadSave {
         return image;
     }
 
-    public static int[][] GetLevelData() {
+    public static int[][][] GetLevelData(int selectedLevel) {
         int[][] levelData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
         BufferedImage level1 = GetSpriteAtlas(LEVEL_ONE_DATA);
         BufferedImage level2 = GetSpriteAtlas(LEVEL_TWO_DATA);
@@ -47,8 +47,10 @@ public class LoadSave {
         levelsData[3] = level4;
         int[][][] levelsTerrain = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH][4];
 
+
+        //Gets the red value of the pixels in the level_x_data as an index for the terrain sprite
         for (int h = 0; h < levelsData.length; h++) {
-            BufferedImage currentLevel = level1;
+            BufferedImage currentLevel = levelsData[selectedLevel];
             for (int j = 0; j < currentLevel.getHeight(); j++) {
                 for (int i = 0; i < currentLevel.getWidth(); i++) {
                     Color color = new Color(currentLevel.getRGB(i, j));
@@ -61,6 +63,10 @@ public class LoadSave {
             }
             levelsTerrain[h] = levelData;
         }
-        return levelsTerrain[0];
+        return levelsTerrain;
+    }
+
+    public static int[][] GetSelectedLevelData(int selectedLevel) {
+        return GetLevelData(selectedLevel)[selectedLevel];
     }
 }

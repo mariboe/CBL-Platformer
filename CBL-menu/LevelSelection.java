@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.Border;
 import main.Game;
+import main.GamePanel;
 
 public class LevelSelection extends JPanel implements ActionListener{
 
@@ -30,7 +31,7 @@ public class LevelSelection extends JPanel implements ActionListener{
         this.setLayout(new BorderLayout());
 
         // Load background image
-        backgroundImage = new ImageIcon("CBL-menu/Clouds.jpg").getImage();
+        backgroundImage = new ImageIcon("CBL-menu/res/Clouds.jpg").getImage();
 
         
         // Make the top panel
@@ -97,18 +98,21 @@ public class LevelSelection extends JPanel implements ActionListener{
         if (source == backButton) {
             mainFrame.showPanel("MainMenu");
         } else if (source == level1) {
-            System.out.println("Starting Level 1...");
             SwingUtilities.invokeLater(() -> {
-                new main.Game();
-                
+                new main.Game(0);
             });
         } else if (source == level2) {
-            System.out.println("Level 2");
+            SwingUtilities.invokeLater(() -> {
+                new main.Game(1);
+            });
         } else if (source == level3) {
-            System.out.println("Level 3");
+            SwingUtilities.invokeLater(() -> {
+                new main.Game(2);
+            });
         } else if (source == level4) {
-            System.out.println("Level 4");
+            SwingUtilities.invokeLater(() -> {
+                new main.Game(3);
+            });
         }
-    }
-    
+    }    
 }

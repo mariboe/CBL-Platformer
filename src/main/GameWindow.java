@@ -11,9 +11,10 @@ public class GameWindow {
 
 		jframe = new JFrame();
 
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jframe.add(gamePanel);
 		jframe.setLocationRelativeTo(null);
+		jframe.setLocation(150, 100);
 		jframe.setResizable(false);
 		jframe.pack();
 		jframe.setTitle("FlatPormer");
@@ -31,6 +32,10 @@ public class GameWindow {
 
 		});
 
+	}
+
+	public void exitWindow() {
+		jframe.dispose();
 	}
 
 }

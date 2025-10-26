@@ -43,9 +43,9 @@ public class Player extends Entity {
 	//Draw the player in either direction
     public void render(Graphics g) {
 		if (playerDirection == -1) {
-			g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset) + 126, (int) (hitbox.y - yDrawOffset) + 1, -156, 116, null);
+			g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset) + 126, (int) (hitbox.y - yDrawOffset + 1 * Game.SCALE), -156, 116, null);
 		} else {
-			g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset) + 1, 156, 116, null);
+			g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset + 1 * Game.SCALE), 156, 116, null);
 		}
 		//drawHitbox(g); (for debugging)
     }
@@ -188,7 +188,7 @@ public class Player extends Entity {
 
     }
 
-	public void loadLevelData(int[][] levelData) {
+	public void loadLevelData(int[][] levelData, int selectedLevel) {
 		this.levelData = levelData;
 		if (!IsEntityOnFloor(hitbox, levelData)) {
 			inAir = true;

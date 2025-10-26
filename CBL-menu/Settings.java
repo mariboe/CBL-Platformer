@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class Settings extends JPanel implements ActionListener{
@@ -42,7 +41,7 @@ public class Settings extends JPanel implements ActionListener{
         centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        settingsImage = new ImageIcon("CBL-menu/Under-Construction-Sign.png");
+        settingsImage = new ImageIcon("CBL-menu/res/Under-Construction-Sign.png");
         imageLabel = new JLabel(settingsImage);     
 
         centerPanel.add(imageLabel);

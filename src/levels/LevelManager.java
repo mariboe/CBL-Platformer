@@ -13,15 +13,15 @@ public class LevelManager {
     private final Level levelTwo;
     private final Level levelThree;
     private final Level levelFour;
-    private Level[] levelsData = new Level[4];
+    private final Level[] levelsData = new Level[4];
 
     public LevelManager(Game game) {
         this.game = game;
         importTerrain();
-        levelOne = new Level(LoadSave.GetLevelData());
-        levelTwo = new Level(LoadSave.GetLevelData());
-        levelThree = new Level(LoadSave.GetLevelData());
-        levelFour = new Level(LoadSave.GetLevelData());
+        levelOne = new Level(LoadSave.GetSelectedLevelData(0));
+        levelTwo = new Level(LoadSave.GetSelectedLevelData(1));
+        levelThree = new Level(LoadSave.GetSelectedLevelData(2));
+        levelFour = new Level(LoadSave.GetSelectedLevelData(3));
         levelsData[0] = levelOne;
         levelsData[1] = levelTwo;
         levelsData[2] = levelThree;
@@ -39,20 +39,16 @@ public class LevelManager {
         }
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int selectedLevel) {
         for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {
             for (int i = 0; i < Game.TILES_IN_WIDTH; i++) {
-                int index = levelOne.getSpriteIndex(i, j);
+                int index = levelsData[selectedLevel].getSpriteIndex(i, j);
                 g.drawImage(levelSprite[index], i * Game.TILES_SIZE, j * Game.TILES_SIZE, Game.TILES_SIZE, Game.TILES_SIZE, null);
             }
         }
     }
 
-    public void update() {
-        
-    }
-
-    public Level getCurrentLevel() {
-        return levelOne;
+    public Level getCurrentLevel(int selectedLevel) {
+        return levelsData[selectedLevel];
     }
 }
