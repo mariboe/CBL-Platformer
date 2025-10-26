@@ -13,6 +13,7 @@ public class LevelManager {
     private final Level levelTwo;
     private final Level levelThree;
     private final Level levelFour;
+    private Level[] levelsData = new Level[4];
 
     public LevelManager(Game game) {
         this.game = game;
@@ -21,7 +22,10 @@ public class LevelManager {
         levelTwo = new Level(LoadSave.GetLevelData());
         levelThree = new Level(LoadSave.GetLevelData());
         levelFour = new Level(LoadSave.GetLevelData());
-
+        levelsData[0] = levelOne;
+        levelsData[1] = levelTwo;
+        levelsData[2] = levelThree;
+        levelsData[3] = levelFour;
     }
 
     private void importTerrain() {

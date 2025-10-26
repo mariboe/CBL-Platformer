@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.Border;
+import main.Game;
 
 public class LevelSelection extends JPanel implements ActionListener{
 
@@ -94,7 +95,11 @@ public class LevelSelection extends JPanel implements ActionListener{
         if (source == backButton) {
             mainFrame.showPanel("MainMenu");
         } else if (source == level1) {
-            System.out.println("Level 1");
+            System.out.println("Starting Level 1...");
+            SwingUtilities.invokeLater(() -> {
+                new main.Game();
+                
+            });
         } else if (source == level2) {
             System.out.println("Level 2");
         } else if (source == level3) {
