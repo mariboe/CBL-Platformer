@@ -11,11 +11,11 @@ public class KeyboardInputs implements KeyListener {
 	public KeyboardInputs(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 	}
+	
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -33,6 +33,7 @@ public class KeyboardInputs implements KeyListener {
 			case KeyEvent.VK_A -> gamePanel.getGame().getPlayer().setLeft(true);
 			case KeyEvent.VK_D -> gamePanel.getGame().getPlayer().setRight(true);
 			case KeyEvent.VK_SPACE -> gamePanel.getGame().getPlayer().setJump(true);
+			case KeyEvent.VK_ESCAPE -> gamePanel.getGame().pause();
 		}
 	}
 }

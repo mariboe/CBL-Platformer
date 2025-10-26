@@ -53,7 +53,7 @@ public class HelpMethods {
             int yOffset = (int) (Game.TILES_SIZE - hitbox.height);
             return tileYPos + yOffset - 1;
         } else {
-            return currentTile * Game.TILES_SIZE - hitbox.height;
+            return (currentTile - 1) * Game.TILES_SIZE;
         }
     }
 

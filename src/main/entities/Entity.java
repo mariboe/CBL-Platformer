@@ -9,6 +9,7 @@ public abstract class Entity {
     protected int width, height;
     protected Rectangle2D.Float hitbox;
 
+    //Every entity (for now only player) gets assigned a position and size
     public Entity(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -16,19 +17,16 @@ public abstract class Entity {
         this.height = height;
     }
 
+    //For debugging purposes, could be removed, does not affect game functionality
     protected void drawHitbox(Graphics g) {
         g.setColor(java.awt.Color.GREEN);
         g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
+    //Initialize the hitbox
     protected void initHitbox(float x, float y, float width, float height) {
         hitbox = new Rectangle2D.Float(x, y, width, height);
     }
-
-//    protected void updateHitbox() {
-//        hitbox.x = (int) x;
-//        hitbox.y = (int) y;
-//    }
 
     public Rectangle2D.Float getHitbox() {
         return hitbox;

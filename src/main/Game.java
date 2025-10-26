@@ -14,6 +14,7 @@ public class Game implements Runnable {
 	private final int UPS_SET = 200;
 	private Player player;
 	private LevelManager levelManager;
+	private boolean paused = false;
 
 	public final static int TILES_DEFAULT_SIZE = 32;
 	public final static float SCALE = 1.5f;
@@ -55,6 +56,10 @@ public class Game implements Runnable {
 		player.render(g);
 	}
 
+	public void pause() {
+		paused = !paused;
+	}
+
 	@Override
 	public void run() {
 
@@ -71,9 +76,13 @@ public class Game implements Runnable {
 		double deltaF = 0;
 
 		while (true) {
+
+			if (paused) {
+				deltaU = 0;
+			}
+
 			long currentTime = System.nanoTime();
-
-
+			
 			deltaU += (currentTime - previousTime) / timePerUpdate;
 			deltaF += (currentTime - previousTime) / timePerFrame;
 			previousTime = currentTime;

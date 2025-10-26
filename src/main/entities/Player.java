@@ -8,49 +8,50 @@ import static main.utils.HelpMethods.*;
 import main.utils.LoadSave;
 
 public class Player extends Entity {
-    
+	//Variables for animations
     private BufferedImage[][] animations;
     private int animationTick, animationIndex;
 	private final int animationSpeed = 20;
 	private int playerAction = IDLE;
-	private boolean moving = false, attacking = false;
-	private boolean left, up, right, down, jump;
-	private final float playerSpeed = 1 * Game.SCALE; // 1 pixel per update
-	private int playerDirection = 1; // 1: right, -1: left
+	private boolean left, right, jump, moving = false, attacking = false;
+	//Variables for movement
+	private final float playerSpeed = 1 * Game.SCALE;
+	private int playerDirection = 1;
+	//Variables for the hitbox
 	private int[][] levelData;
-	private final float xDrawOffset = 32 * Game.SCALE;
-	private final float yDrawOffset = 27 * Game.SCALE;
-
+	private final float xDrawOffset = 32 * Game.SCALE, yDrawOffset = 27 * Game.SCALE;
+	//Variables for movement
 	private float airSpeed = 0f;
 	private final float gravity = 0.03f * Game.SCALE;
 	private final float jumpSpeed = -2f *Game.SCALE;
 	private boolean inAir = false;
 
-
+	//Initialization
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
 		initHitbox(x, y, 20 * Game.SCALE, 32 * Game.SCALE);
     }
 
-
+	//Update the game state
     public void update() {
 		updatePosition();
 		updateAnimationTick();
 		setAnimation();
     }
 
+	//Draw the player in either direction
     public void render(Graphics g) {
 		if (playerDirection == -1) {
 			g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset) + 126, (int) (hitbox.y - yDrawOffset) + 1, -156, 116, null);
 		} else {
 			g.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset) + 1, 156, 116, null);
 		}
-		drawHitbox(g);
+		//drawHitbox(g); (for debugging)
     }
 
+	//Update animation every
     private void updateAnimationTick() {
-		
 		animationTick++;
 		if (animationTick >= animationSpeed) {
 			animationTick = 0;
@@ -137,6 +138,9 @@ public class Player extends Entity {
 				updateXPos(xSpeed);
 			} else {
 				hitbox.y = GetEntityHeightIfTouching(hitbox, airSpeed);
+				if (airSpeed < 0) {
+					airSpeed = 0.01f;
+				}
 				resetInAir();
 				updateXPos(xSpeed);
 			}
@@ -194,8 +198,6 @@ public class Player extends Entity {
 	public void resetDirectionBooleans() {
 		left = false;
 		right = false;
-		up = false;
-		down = false;
 	}
 
 	public void setAttacking(boolean attacking) {
@@ -212,15 +214,6 @@ public class Player extends Entity {
 		moving = left;
 	}
 
-	public boolean isUp() {
-		return up;
-	}
-
-	public void setUp(boolean up) {
-		this.up = up;
-		moving = up;
-	}
-
 	public boolean isRight() {
 		return right;
 	}
@@ -229,15 +222,6 @@ public class Player extends Entity {
 		this.right = right;
 		if (right) playerDirection = 1;
 		moving = right;
-	}
-
-	public boolean isDown() {
-		return down;
-	}
-
-	public void setDown(boolean down) {
-		this.down = down;
-		moving = down;
 	}
 
 	public void setJump(boolean jump) {
